@@ -1,12 +1,12 @@
 import './home-page.css';
-function HomePage({onChangePokemon, onChangeMtg}) {
+function HomePage({onChangeNormal, onChangeHard}) {
 
     return (
         <div className="home page">
             <h1>Pokemon Memory Card Game</h1>
             <div className="home-button-container">
-                <button value={'pokemon'} onClick={() => onChangePokemon()}>Normal</button>
-                <button value={'pokemon'} onClick={() => onChangePokemon()}>Hard</button>
+                <button value={'normal'} onClick={() => onChangeNormal()}>Normal</button>
+                <button value={'hard'} onClick={() => onChangeHard()}>Hard</button>
             </div>
         </div>
     )

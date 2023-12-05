@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 import './pokemon-page.css';
-import PokemonCardList from "./PokemonCardList";
+import Card from "../components/card";
 import usePokemonData from "./usePokemonData";
 import shuffleArray from "../utils/shuffleArray";
 
-
 const NUMBER_OF_CARDS = 9;
 
-const PokemonPage = ({ onBackHome}) => {
-    const { pokemonData, setPokemonData, isLoading, key } = usePokemonData(0);
+const PokemonPage = ({ onBackHome, isHard=false}) => {
+    const { pokemonData, setPokemonData, isLoading } = usePokemonData(0);
     const [clickedPokemon, setClickedPokemon] = useState([]);
   
     const checkPokemonClick = (pokemonClicked) => {
@@ -34,7 +33,22 @@ const PokemonPage = ({ onBackHome}) => {
           </div>
         )}
   
-        <PokemonCardList pokemonToDisplay={pokemonData} checkPokemonClick={checkPokemonClick}></PokemonCardList>
+        <div className="pokemon-list">
+            {pokemonData.map((pokemon) => {
+              
+              
+              return (
+                <Card
+                key={pokemon.id}
+                name={pokemon.name}
+                imgSrc={pokemon.imgSrc}
+                altText={pokemon.altText}
+                checkPokemonClick={checkPokemonClick}
+                isHard={isHard}
+              />
+              )
+            })}
+          </div>
         <button onClick={onBackHome}>Back To Home</button>
       </div>
     );

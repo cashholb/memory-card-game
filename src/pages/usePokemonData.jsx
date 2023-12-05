@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 const usePokemonData = (initialKey) => {
   const [pokemonData, setPokemonData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [key, setKey] = useState(initialKey);
 
   useEffect(() => {
     const fetchPokemonData = async () => {
@@ -44,7 +43,7 @@ const usePokemonData = (initialKey) => {
     fetchPokemonData();
   }, []);
 
-  return { pokemonData, setPokemonData, isLoading, key };
+  return { pokemonData, setPokemonData, isLoading };
 };
 
 export default usePokemonData;

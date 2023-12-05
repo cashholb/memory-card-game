@@ -4,8 +4,6 @@ import PokemonPage from './pages/pokemon-page';
 
 import './App.css'
 
-
-
 function App() {
 
   const [currPage, setCurrPage] = useState('home');
@@ -17,9 +15,11 @@ function App() {
   const renderPage = () => {
     switch (currPage) {
       case 'home':
-        return <HomePage onChangePokemon={() => handlePageChange('pokemon')} onChangeMtg={() => handlePageChange('mtg')}/>
-      case 'pokemon':
+        return <HomePage onChangeNormal={() => handlePageChange('normal')} onChangeHard={() => handlePageChange('hard')}/>
+      case 'normal':
         return <PokemonPage onBackHome={() => handlePageChange('home')}/>
+      case 'hard':
+        return <PokemonPage onBackHome={() => handlePageChange('home')} isHard={true}/>
     }
   }
 
