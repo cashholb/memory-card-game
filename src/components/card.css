@@ -1,0 +1,59 @@
+/* card.css */
+
+  
+  .card {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    perspective: 1000px;
+    height: 200px;
+    transition: transform 0.5s ease;
+  }
+  
+  .card.flipped {
+    transform: rotateY(180deg);
+  }
+  
+  .card-inner {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+  }
+  
+  .card:hover .card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .card-front,
+  .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #333; /* Adjust border styles as needed */
+    border-radius: 15px;
+  }
+  
+  .card-front {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card-image {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid #333; /* Add border to the bottom to separate image and text */
+  }
+  
+  h2 {
+    margin: 10px 0;
+    color: black;
+  }
+  
+  .card-back {
+    transform: rotateY(180deg);
+    /* Additional styling for the back face, if needed */
+  }
+  
