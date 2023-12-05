@@ -1,60 +1,27 @@
-import Card from "../components/card";
 import { useState, useEffect } from "react";
-import './pokemon-page.css'; // Import your CSS file for styling
-import pokemonList from "./pokemonList";
+import './pokemon-page.css';
+import PokemonCardList from "./PokemonCardList";
+import usePokemonData from "./usePokemonData";
 import shuffleArray from "../utils/shuffleArray";
+
 
 const NUMBER_OF_CARDS = 9;
 
-const PokemonPage = ({ onBackHome }) => {
-    const [pokemonData, setPokemonData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+const PokemonPage = ({ onBackHome}) => {
+    const { pokemonData, setPokemonData, isLoading, key } = usePokemonData(0);
     const [clickedPokemon, setClickedPokemon] = useState([]);
   
-    useEffect(() => {
-      
-      let randomPokemon = new Set();
-      while(randomPokemon.size < NUMBER_OF_CARDS) {
-        randomPokemon.add(pokemonList[Math.floor(Math.random() * pokemonList.length)]);
-      }
-
-      const fetchPokemonData = async () => {
-        const fetchDataPromises = Array.from(randomPokemon).map(async (name) => {
-            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
-            if (!response.ok) {
-                throw new Error(`Failed to fetch Pokemon data: ${response.status}`);
-            }
-
-            const data = await response.json();
-            return {
-                id: data.id,
-                name: data.name,
-                imgSrc: data.sprites.front_default,
-                altText: `${data.name} sprite`
-            }
-        });
-
-        try {
-          const fetchedPokemon = await Promise.all(fetchDataPromises);
-          setPokemonData(fetchedPokemon);
-        } catch (error) {
-          console.error('Error fetching Pokemon data:', error.message);
-        }finally{
-            setIsLoading(false);
-        }
-      };
-      fetchPokemonData();
-
-    }, []);
-
     const checkPokemonClick = (pokemonClicked) => {
       let currPokemonList = [...clickedPokemon];
       if (currPokemonList.includes(pokemonClicked)) {
         onBackHome();
+      } else {
+        // Shuffle the array and update the state with the new order
+        const newPokemonData = shuffleArray([...pokemonData]);
+        setPokemonData(newPokemonData);
+        setClickedPokemon(currPokemonList.concat(pokemonClicked));
       }
-      setPokemonData(shuffleArray(pokemonData));
-      setClickedPokemon(currPokemonList.concat(pokemonClicked));
-    }
+    };
   
     return (
       <div className="pokemon-page page">
@@ -67,17 +34,7 @@ const PokemonPage = ({ onBackHome }) => {
           </div>
         )}
   
-        <div className="pokemon-list">
-            {!isLoading && pokemonData.map((pokemon) => (
-                <Card 
-                    key={pokemon.id} 
-                    name={pokemon.name} 
-                    imgSrc={pokemon.imgSrc} 
-                    altText={pokemon.altText}
-                    checkPokemonClick={checkPokemonClick}
-                />
-            ))}
-        </div>
+        <PokemonCardList pokemonToDisplay={pokemonData} checkPokemonClick={checkPokemonClick}></PokemonCardList>
         <button onClick={onBackHome}>Back To Home</button>
       </div>
     );
