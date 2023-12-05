@@ -6,26 +6,30 @@ import shuffleArray from "../utils/shuffleArray";
 
 const NUMBER_OF_CARDS = 9;
 
-const PokemonPage = ({ onBackHome, isHard=false}) => {
+const PokemonPage = ({ onBackHome, highScore, checkIncrementHighScore, isHard=false}) => {
     const { pokemonData, setPokemonData, isLoading } = usePokemonData(0);
     const [clickedPokemon, setClickedPokemon] = useState([]);
+
+    let currentScore = clickedPokemon.length;
   
     const checkPokemonClick = (pokemonClicked) => {
       let currPokemonList = [...clickedPokemon];
       if (currPokemonList.includes(pokemonClicked)) {
         onBackHome();
       } else {
-        // Shuffle the array and update the state with the new order
         const newPokemonData = shuffleArray([...pokemonData]);
         setPokemonData(newPokemonData);
         setClickedPokemon(currPokemonList.concat(pokemonClicked));
+
+        checkIncrementHighScore(currentScore + 1);
       }
     };
-  
+
     return (
       <div className="pokemon-page page">
-        <h1>This is the Pokemon page</h1>
-        <p className="score">Score: {clickedPokemon.length}</p>
+        <h1>{isHard ? 'Hard' : 'Normal'} Mode</h1>
+        <p className="score">High Score: {highScore}</p>
+        <p className="score">Current Score: {currentScore}</p>
   
         {isLoading && (
           <div className="loading-container">
