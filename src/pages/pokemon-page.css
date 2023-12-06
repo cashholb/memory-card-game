@@ -2,9 +2,8 @@
 .pokemon-page {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
 }
-
 
 .pokemon-list {
   display: grid;
@@ -13,25 +12,24 @@
   gap: 16px;
 }
 
-
 /* loading animation */
 .loading-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100px; /* Adjust the size as needed */
-  }
-  
-  .loading-spinner {
-    border: 4px solid #ccc;
-    border-top: 4px solid #3498db; /* Adjust the color as needed */
-    border-radius: 50%;
-    width: 30px; /* Adjust the size as needed */
-    height: 30px; /* Adjust the size as needed */
-    animation: spin 1s linear infinite;
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px; /* Adjust the size as needed */
+}
+
+.loading-spinner {
+  border: 4px solid #ccc;
+  border-top: 4px solid #3498db; /* Adjust the color as needed */
+  border-radius: 50%;
+  width: 30px; /* Adjust the size as needed */
+  height: 30px; /* Adjust the size as needed */
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

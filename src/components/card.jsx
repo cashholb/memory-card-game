@@ -23,7 +23,6 @@ function Card({ name, imgSrc, altText, checkPokemonClick, isHard = true }) {
     );
   } else {
     const decideDisplay = Math.random() < 0.5;
-    console.log(decideDisplay);
     return (
       <div className={`card-container`}>
         <div className='card' onClick={handleCardClick}>
