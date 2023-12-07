@@ -12,10 +12,6 @@ const PokemonPage = ({ onBackHome, highScore, checkIncrementHighScore, isHard=fa
     const [clickedPokemon, setClickedPokemon] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
 
-    const closeModal = () => setModalOpen(false);
-    const openModal = () => setModalOpen(true);
-
-
     let currentScore = clickedPokemon.length;
   
     const checkPokemonClick = (pokemonClicked) => {
@@ -46,7 +42,7 @@ const PokemonPage = ({ onBackHome, highScore, checkIncrementHighScore, isHard=fa
         }
         
         <h1>{isHard ? 'Hard' : 'Normal'} Mode</h1>
-        <div>
+        <div className="score-container">
           <p className="score">High Score: {highScore}</p>
           <p className="score">Current Score: {currentScore}</p>
         </div>

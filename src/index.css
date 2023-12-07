@@ -66,3 +66,27 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+@media only screen and (max-width: 600px), screen and (max-height: 900px) {
+  .card-container {
+    width: 120px;
+    height: 120px;
+  }
+
+  .score-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .card img{
+    width: 80px;
+    height: 80px;
+  }
+
+  .card p {
+    margin-top: 0;
+  }
+}

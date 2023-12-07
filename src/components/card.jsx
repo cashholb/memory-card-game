@@ -13,7 +13,7 @@ function Card({ name, imgSrc, altText, checkPokemonClick, isHard = true }) {
         <div className='card' onClick={handleCardClick}>
           <div className='card-front'>
             <img src={imgSrc} alt={altText} />
-            <h2>{name}</h2>
+            <p>{name}</p>
           </div>
           <div className='card-back'>
   
@@ -28,7 +28,7 @@ function Card({ name, imgSrc, altText, checkPokemonClick, isHard = true }) {
         <div className='card' onClick={handleCardClick}>
           <div className='card-front'>
             <img src={imgSrc} alt={altText} style={{visibility: `${decideDisplay ? 'visible' : 'hidden'}`}}/>
-            <h2 style={{visibility: `${decideDisplay ? 'hidden' : 'visible'}`}}>{name}</h2>
+            <p style={{visibility: `${decideDisplay ? 'hidden' : 'visible'}`}}>{name}</p>
           </div>
           <div className='card-back'>
   

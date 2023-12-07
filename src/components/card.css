@@ -18,7 +18,7 @@
 
 /* add .animate-flip class to card to add flip (CURRENTLY BROKEN FOR UNKNOWN REASONS) */
 .card.animate-flip {
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-name: flip-card;
   animation-iteration-count: 1;
 }

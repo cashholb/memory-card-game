@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 import './EndGameModal.css';
 
 const Backdrop = ({children}) => {
@@ -45,6 +46,7 @@ const EndGameModal = ({hasWon, score, onBackHome}) => {
         initial="hidden"
         animate="visible"
         exit="exit"
+        
       >
         <h1>GAME OVER</h1>
         <p>You {hasWon ? 'won!' : 'lost'}</p>

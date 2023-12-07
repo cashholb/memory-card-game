@@ -55,9 +55,9 @@ function App() {
   }
 
   return (
-    <>
+    <div className='app-container'>
       {renderPage()}
-    </>
+    </div>
   );
 };
 
